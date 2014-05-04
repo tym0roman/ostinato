@@ -1,0 +1,110 @@
+/*
+Copyright (C) 2010 Srivats P.
+
+This file is part of "Ostinato"
+
+This is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>
+*/
+
+import "protocol.proto";
+
+package OstProto;
+// IPv4
+message Ip4 {
+
+    enum IpAddrMode {
+        e_im_fixed = 0;
+        e_im_inc_host = 1;
+        e_im_dec_host = 2;
+        e_im_random_host = 3;
+    }
+
+    enum IpOptType {
+	e_ot_eool = 0;
+	e_ot_nop = 1;
+        e_ot_sec = 2;
+        e_ot_lsr = 3;
+        e_ot_ts = 4;
+        e_ot_e_sec = 5;
+        e_ot_cipso = 6;
+        e_ot_rr = 7;
+        e_ot_sid = 8;
+        e_ot_ssr = 9;
+        e_ot_zsu = 10;
+        e_ot_mtup = 11;
+        e_ot_mtur = 12;
+        e_ot_finn = 13;
+        e_ot_visa = 14;
+        e_ot_encode = 15;
+        e_ot_imitd = 16;
+        e_ot_eip = 17;
+        e_ot_tr = 18;
+        e_ot_addext = 19;
+        e_ot_rtralt = 20;
+        e_ot_sdb = 21;
+        e_ot_unassigned = 22;
+        e_ot_dps = 23;
+        e_ot_ump = 24;
+        e_ot_qs = 25;
+        e_ot_exp1 = 26;
+        e_ot_exp2 = 27;
+        e_ot_exp3 = 28;
+        e_ot_exp4 = 29;
+    }
+
+    enum IpOptMode {
+        e_om_fixed = 0;
+        e_om_inc = 1;
+        e_om_dec = 2;
+        e_om_random = 3;
+    }
+
+    optional bool is_override_ver    = 1;
+    optional bool is_override_hdrlen = 2;
+    optional bool is_override_totlen = 3;
+    optional bool is_override_proto  = 30;
+    optional bool is_override_cksum  = 4;
+
+    optional uint32    ver_hdrlen = 5 [default = 0x45]; 
+    optional uint32    tos = 6;
+    optional uint32    totlen = 7;
+    optional uint32    id = 8 [default = 1234];
+    optional uint32    flags = 9;
+    optional uint32    frag_ofs = 10;
+    optional uint32    ttl = 11 [default = 127];
+    optional uint32    proto = 12;
+    optional uint32    cksum = 13;
+
+    // Source IP
+    optional fixed32    src_ip = 14;
+    optional IpAddrMode    src_ip_mode = 15 [default = e_im_fixed];
+    optional uint32        src_ip_count = 16 [default = 16];
+    optional fixed32    src_ip_mask = 17 [default = 0xFFFFFF00];
+    
+    // Destination IP
+    optional fixed32    dst_ip = 18;
+    optional IpAddrMode    dst_ip_mode = 19 [default = e_im_fixed];
+    optional uint32        dst_ip_count = 20 [default = 16];
+    optional fixed32    dst_ip_mask = 21 [default = 0xFFFFFF00];
+
+    // IPv4 Options
+    optional IpOptType opt_type = 22;
+    optional uint32 opt_len = 23 [default = 2];
+    optional uint32 opt_data = 24;
+    optional IpOptMode opt_mode = 25 [default = e_om_fixed];
+}
+
+extend Protocol {
+    optional Ip4 ip4 = 301;
+}

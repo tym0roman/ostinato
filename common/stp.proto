@@ -1,0 +1,45 @@
+/*
+Copyright (C) 2013 Prochkaruk M.
+
+This file is part of "Ostinato"
+
+This is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>
+*/
+
+import "protocol.proto";
+
+package OstProto;
+
+// Spanning Tree Protocol
+message Stp {
+
+    optional uint32    		protocol_identifier = 1 [default = 0x0000];
+    optional uint32    		protocol_version_identifier = 2 [default = 0x00];
+    optional uint32    		protocol_bpdu_type = 3 [default = 0x00];
+    optional uint32     	protocol_flags = 4;
+    optional uint32         protocol_root_system_id_extension = 5;
+    optional uint64         protocol_root_system_id = 6;
+    optional uint64    		protocol_root_path_cost = 7;
+    optional uint32         protocol_bridge_identifier_id_extension = 8;
+    optional uint64         protocol_bridge_identifier_id = 9;
+    optional uint32    		protocol_port_identifier = 10;
+    optional uint32    		protocol_message_age = 11;
+    optional uint32   		protocol_max_age = 12;
+    optional uint32    		protocol_hello_time = 13;
+    optional uint32    		protocol_forward_delay = 14;
+}
+
+extend Protocol {
+    optional Stp stp = 209;
+}
