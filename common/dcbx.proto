@@ -1,0 +1,64 @@
+/*
+Copyright (C) 2010 Srivats P.
+
+This file is part of "Ostinato"
+
+This is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>
+*/
+
+import "protocol.proto";
+
+package OstProto;
+
+// Dcbx Protocol
+message Dcbx {
+
+// ETC Configuration TLV
+    optional uint32    		tlv_type_len_c = 1 [default = 65049];
+    optional uint32    		oui802_c = 2;
+	optional uint32    		subtype802_c = 3;
+	optional uint32    		will_cbs_res_tcs = 4;
+	optional uint32    		prior_ass_c = 5;
+	optional uint64    		tc_band_c = 6;
+	optional uint64    		tsa_ass_c = 7;
+// ETC Recommendation TLV
+	optional uint32    		tlv_type_len_r = 8 [default = 65049];
+    optional uint32    		oui802_r = 9;
+	optional uint32    		subtype802_r = 10;
+	optional uint32    		reserved_r = 11;
+	optional uint32    		prior_ass_r = 12;
+	optional uint64    		tc_band_r = 13;
+	optional uint64    		tsa_ass_r = 14;
+// Priority-base Flow Control Confiduration TLV
+	optional uint32    		tlv_type_len_p = 15 [default = 65030 ];
+    optional uint32    		oui802_p = 16;
+	optional uint32    		subtype802_p = 17;
+	optional uint32    		will_mbc_res_pfc = 18;
+	optional uint32    		pfc_enable = 19;
+//Application Priority TLV
+	optional uint32    		tlv_type_len_a = 20;
+    optional uint32    		oui802_a = 21;
+	optional uint32    		subtype802_a = 22;
+	optional uint32    		reserved_a = 23;
+	repeated uint64    		app_priority = 24 [packed = true];
+//Meta
+    optional bool is_c = 25;
+	optional bool is_r = 26;
+	optional bool is_p = 27;
+	optional bool is_a = 28;
+}
+
+extend Protocol {
+    optional Dcbx dcbx = 298;
+}
