@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>664</width>
+    <width>634</width>
     <height>507</height>
    </rect>
   </property>
@@ -141,15 +141,15 @@ QLineEdit:enabled[inputMask = &quot;HH HH HH HH HH HH; &quot;] { background-colo
        <item row="1" column="0" colspan="2">
         <widget class="QToolBox" name="tbSelectProtocols">
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="page">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>765</width>
-            <height>280</height>
+            <width>665</width>
+            <height>275</height>
            </rect>
           </property>
           <attribute name="label">
@@ -600,8 +600,8 @@ QLineEdit:enabled[inputMask = &quot;HH HH HH HH HH HH; &quot;] { background-colo
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>624</width>
-            <height>239</height>
+            <width>594</width>
+            <height>226</height>
            </rect>
           </property>
           <attribute name="label">
@@ -754,6 +754,37 @@ QLineEdit:enabled[inputMask = &quot;HH HH HH HH HH HH; &quot;] { background-colo
             </layout>
            </item>
           </layout>
+         </widget>
+         <widget class="QWidget" name="page_3">
+          <attribute name="label">
+           <string>Template</string>
+          </attribute>
+          <widget class="QGroupBox" name="groupBox">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>151</width>
+             <height>141</height>
+            </rect>
+           </property>
+           <property name="title">
+            <string/>
+           </property>
+           <widget class="QPushButton" name="pbIpv4Mylticast">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>20</y>
+              <width>111</width>
+              <height>26</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>IPv4 Multicast</string>
+            </property>
+           </widget>
+          </widget>
          </widget>
         </widget>
        </item>
@@ -1295,12 +1326,12 @@ QLineEdit:enabled[inputMask = &quot;HH HH HH HH HH HH; &quot;] { background-colo
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>628</x>
-     <y>190</y>
+     <x>463</x>
+     <y>143</y>
     </hint>
     <hint type="destinationlabel">
-     <x>628</x>
-     <y>236</y>
+     <x>463</x>
+     <y>177</y>
     </hint>
    </hints>
   </connection>
@@ -1311,12 +1342,12 @@ QLineEdit:enabled[inputMask = &quot;HH HH HH HH HH HH; &quot;] { background-colo
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>58</x>
-     <y>101</y>
+     <x>30</x>
+     <y>68</y>
     </hint>
     <hint type="destinationlabel">
-     <x>446</x>
-     <y>95</y>
+     <x>299</x>
+     <y>82</y>
     </hint>
    </hints>
   </connection>
@@ -1327,12 +1358,12 @@ QLineEdit:enabled[inputMask = &quot;HH HH HH HH HH HH; &quot;] { background-colo
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>58</x>
-     <y>135</y>
+     <x>30</x>
+     <y>95</y>
     </hint>
     <hint type="destinationlabel">
-     <x>446</x>
-     <y>156</y>
+     <x>299</x>
+     <y>132</y>
     </hint>
    </hints>
   </connection>
@@ -1343,12 +1374,12 @@ QLineEdit:enabled[inputMask = &quot;HH HH HH HH HH HH; &quot;] { background-colo
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>58</x>
-     <y>135</y>
+     <x>30</x>
+     <y>95</y>
     </hint>
     <hint type="destinationlabel">
-     <x>280</x>
-     <y>250</y>
+     <x>134</x>
+     <y>189</y>
     </hint>
    </hints>
   </connection>
@@ -1359,12 +1390,12 @@ QLineEdit:enabled[inputMask = &quot;HH HH HH HH HH HH; &quot;] { background-colo
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>446</x>
-     <y>95</y>
+     <x>299</x>
+     <y>82</y>
     </hint>
     <hint type="destinationlabel">
-     <x>446</x>
-     <y>128</y>
+     <x>299</x>
+     <y>108</y>
     </hint>
    </hints>
   </connection>
@@ -1375,12 +1406,12 @@ QLineEdit:enabled[inputMask = &quot;HH HH HH HH HH HH; &quot;] { background-colo
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>446</x>
-     <y>156</y>
+     <x>299</x>
+     <y>132</y>
     </hint>
     <hint type="destinationlabel">
-     <x>446</x>
-     <y>189</y>
+     <x>299</x>
+     <y>158</y>
     </hint>
    </hints>
   </connection>
@@ -1391,12 +1422,12 @@ QLineEdit:enabled[inputMask = &quot;HH HH HH HH HH HH; &quot;] { background-colo
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>446</x>
-     <y>217</y>
+     <x>299</x>
+     <y>182</y>
     </hint>
     <hint type="destinationlabel">
-     <x>446</x>
-     <y>250</y>
+     <x>299</x>
+     <y>208</y>
     </hint>
    </hints>
   </connection>
@@ -1407,12 +1438,12 @@ QLineEdit:enabled[inputMask = &quot;HH HH HH HH HH HH; &quot;] { background-colo
    <slot>setChecked(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>123</x>
-     <y>101</y>
+     <x>95</x>
+     <y>70</y>
     </hint>
     <hint type="destinationlabel">
-     <x>446</x>
-     <y>95</y>
+     <x>299</x>
+     <y>82</y>
     </hint>
    </hints>
   </connection>
@@ -1423,12 +1454,12 @@ QLineEdit:enabled[inputMask = &quot;HH HH HH HH HH HH; &quot;] { background-colo
    <slot>setChecked(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>124</x>
-     <y>135</y>
+     <x>96</x>
+     <y>98</y>
     </hint>
     <hint type="destinationlabel">
-     <x>446</x>
-     <y>156</y>
+     <x>299</x>
+     <y>132</y>
     </hint>
    </hints>
   </connection>
@@ -1439,12 +1470,12 @@ QLineEdit:enabled[inputMask = &quot;HH HH HH HH HH HH; &quot;] { background-colo
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>101</x>
-     <y>243</y>
+     <x>73</x>
+     <y>196</y>
     </hint>
     <hint type="destinationlabel">
-     <x>302</x>
-     <y>128</y>
+     <x>164</x>
+     <y>108</y>
     </hint>
    </hints>
   </connection>
@@ -1455,12 +1486,12 @@ QLineEdit:enabled[inputMask = &quot;HH HH HH HH HH HH; &quot;] { background-colo
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>124</x>
-     <y>243</y>
+     <x>96</x>
+     <y>199</y>
     </hint>
     <hint type="destinationlabel">
-     <x>302</x>
-     <y>189</y>
+     <x>226</x>
+     <y>155</y>
     </hint>
    </hints>
   </connection>

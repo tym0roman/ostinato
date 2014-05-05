@@ -140,6 +140,7 @@ private slots:
     void on_pbNext_clicked();
 
     void on_pbOk_clicked();
+    void on_pbIpv4Mylticast_clicked();
 };
 
 #endif

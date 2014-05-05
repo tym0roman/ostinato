@@ -1,0 +1,54 @@
+protocol.name = "IPv4"
+
+protocol.protocolFrameSize = function() { return 40; }
+
+protocol.protocolId = function(id_type)
+{
+if (id_type == Protocol.ProtocolIdEth)
+return 0x0800;
+
+return 0;
+}
+
+protocol.protocolFrameValue = function(index)
+{
+var pfv = new Array(4);
+
+// ip version = 4
+// ihl = 5
+pfv[0] = 0x45;
+
+// total length
+pfv[2] = 0x0;
+pfv[3] = 0x40;
+
+//time to live
+pfv[8] = 0x64;
+
+//protocol
+pfv[9] = 0x01;
+
+//source address
+pfv[12] = 0x10;
+pfv[13] = 0x1;
+pfv[14] = 0x1;
+pfv[15] = 0x1;
+
+//dest address
+pfv[16] = 0x172;
+pfv[17] = 0x10;
+pfv[18] = 0x10;
+pfv[19] = 0x10;
+return pfv;
+}
+
+protocol.protocolFrameCksum = function(index, type)
+{
+var sum = 0;
+
+if (type == Protocol.CksumIpPseudo) {
+sum += protocol.protocolFramePayloadSize(index);
+sum += protocol.payloadProtocolId(Protocol.ProtocolIdIp);
+}
+return ~sum;
+}

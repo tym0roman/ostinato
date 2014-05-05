@@ -161,9 +161,6 @@ AbstractProtocol::FieldFlags Ip4Protocol::fieldFlags(int index) const
 
         case ip4_srcAddr:
         case ip4_dstAddr:
-        case ip4_optType:
-        case ip4_optLen:
-        case ip4_optData:
             break;
 
         case ip4_isOverrideVer:
@@ -177,7 +174,6 @@ AbstractProtocol::FieldFlags Ip4Protocol::fieldFlags(int index) const
         case ip4_dstAddrMode:
         case ip4_dstAddrCount:
         case ip4_dstAddrMask:
-        case ip4_optMode:
             flags &= ~FrameField;
             flags |= MetaField;
             break;
@@ -309,7 +305,7 @@ QVariant Ip4Protocol::fieldData(int index, FieldAttrib attrib,
                 }
                 case FieldTextValue:
                     return QString("0x%1").
-                        arg(data.id(), 2, BASE_HEX, QChar('0'));
+                        arg(data.id(), 2, BASE_HEX, QChar('0'));;
                 default:
                     break;
             }
@@ -562,174 +558,8 @@ QVariant Ip4Protocol::fieldData(int index, FieldAttrib attrib,
             }
             break;
         }
-        case ip4_optType:
-        {
-            switch(attrib)
-            {
-                case FieldName:
-                    return QString("Option's Type");
-                case FieldValue:
-                    return data.opt_type();
-                case FieldTextValue:
-                    return QString(fieldData(index, FieldFrameValue,
-                        streamIndex).toByteArray().toHex());
-                case FieldFrameValue:
-                {
-                    if((data.ver_hdrlen() & 0x0F) <= 5 || data.opt_len() > 40)
-                        break;
-
-                    int fv = 0;
-
-                    switch(data.opt_type())
-                    {
-                        case OstProto::Ip4::e_ot_eool:
-                        case OstProto::Ip4::e_ot_nop:
-                        case OstProto::Ip4::e_ot_rr:
-                        case OstProto::Ip4::e_ot_zsu:
-                        case OstProto::Ip4::e_ot_mtup:
-                        case OstProto::Ip4::e_ot_mtur:
-                        case OstProto::Ip4::e_ot_encode:
-                        case OstProto::Ip4::e_ot_qs:
-                            fv = data.opt_type();
-                            break;
-                        case OstProto::Ip4::e_ot_ts:
-                        case OstProto::Ip4::e_ot_tr:
-                            fv = (data.opt_type() | 0x40);
-                            break;
-                        case OstProto::Ip4::e_ot_sec:
-                        case OstProto::Ip4::e_ot_lsr:
-                        case OstProto::Ip4::e_ot_e_sec:
-                        case OstProto::Ip4::e_ot_cipso:
-                        case OstProto::Ip4::e_ot_sid:
-                        case OstProto::Ip4::e_ot_ssr:
-                        case OstProto::Ip4::e_ot_visa:
-                        case OstProto::Ip4::e_ot_imitd:
-                        case OstProto::Ip4::e_ot_eip:
-                        case OstProto::Ip4::e_ot_addext:
-                        case OstProto::Ip4::e_ot_rtralt:
-                        case OstProto::Ip4::e_ot_sdb:
-                        case OstProto::Ip4::e_ot_unassigned:
-                        case OstProto::Ip4::e_ot_dps:
-                        case OstProto::Ip4::e_ot_ump:
-                            fv = (data.opt_type() | 0x80);
-                            break;
-                        case OstProto::Ip4::e_ot_finn:
-                            fv = (data.opt_type() | 0xC0);
-                            break;
-                        case OstProto::Ip4::e_ot_exp1:
-                            fv = 0x1E;
-                            break;
-                        case OstProto::Ip4::e_ot_exp2:
-                            fv = 0x5E;
-                            break;
-                        case OstProto::Ip4::e_ot_exp3:
-                            fv = 0x9E;
-                            break;
-                        case OstProto::Ip4::e_ot_exp4:
-                            fv = 0xDE;
-                            break;
-                        default:
-                            break;
-                    }
-                    return QByteArray(1, (char)fv);
-                }
-                default:
-                    break;
-            }
-            break;
-        }
-        case ip4_optLen:
-        {
-            switch(attrib)
-            {
-                case FieldName:
-                    return QString("Option's Length");
-                case FieldValue:
-                    return data.opt_len();
-                case FieldFrameValue:
-                {
-                    if((data.ver_hdrlen() & 0x0F) <= 5 || data.opt_len() > 40)
-                        break;
-                    return QByteArray(1, (char)data.opt_len());
-                }
-                case FieldTextValue:
-                {
-                    if((data.ver_hdrlen() & 0x0F) <= 5 || data.opt_len() > 40)
-                        break;
-                    return QString("%1").arg(data.opt_len());
-                }
-                default:
-                    break;
-            }
-            break;
-        }
-        case ip4_optData:
-        {
-            switch(attrib)
-            {
-                case FieldName:
-                    return QString("Option's Data");
-                case FieldValue:
-                    return data.opt_data();
-                case FieldTextValue:
-                    return QString(fieldData(index, FieldFrameValue,
-                        streamIndex).toByteArray().toHex());
-                case FieldFrameValue:
-                {
-                    if((data.ver_hdrlen() & 0x0F) <= 5 || data.opt_len() > 40)
-                        break;
-
-                    QByteArray fv;
-                    int dataLen;
-                    int totalLen;
-
-                    totalLen = ((data.ver_hdrlen() & 0x0F) - 5) * 4 - 2;
-                    dataLen = data.opt_len() - 2;
-
-                    if(totalLen < dataLen)
-                        dataLen = totalLen;
-
-                    fv.resize(totalLen);
-
-                    switch(data.opt_mode())
-                    {
-                        case OstProto::Ip4::e_om_fixed:
-                        {
-                            for (int i = 0; i < dataLen; i++)
-                                fv[i] = data.opt_data() % (0xFF + 1);
-                            break;
-                        }
-                        case OstProto::Ip4::e_om_inc:
-                        {
-                            for (int i = 0; i < dataLen; i++)
-                                fv[i] = (data.opt_data() + i) % (0xFF + 1);
-                            break;
-                        }
-                        case OstProto::Ip4::e_om_dec:
-                        {
-                            for (int i = 0; i < dataLen; i++)
-                                fv[i] = (data.opt_data() - i) % (0xFF + 1);
-                            break;
-                        }
-                        case OstProto::Ip4::e_om_random:
-                        {
-                            for (int i = 0; i < dataLen; i++)
-                                fv[i] = qrand() % (0xFF + 1);
-                            break;
-                        }
-                        default:
-                            break;
-                    }
-                    for (int i = dataLen; i < totalLen; i++)
-                        fv[i] = 0x00;
-                    return fv;
-                }
-                default:
-                    break;
-            }
-            break;
-        }
         // Meta fields
+
         case ip4_isOverrideVer:
         case ip4_isOverrideHdrLen:
         case ip4_isOverrideTotLen:
@@ -743,8 +573,6 @@ QVariant Ip4Protocol::fieldData(int index, FieldAttrib attrib,
         case ip4_dstAddrMode:
         case ip4_dstAddrCount:
         case ip4_dstAddrMask:
-
-        case ip4_optMode:
         default:
             break;
     }
@@ -877,11 +705,6 @@ void Ip4Protocol::loadConfigWidget()
     configForm->cmbIpDstAddrMode->setCurrentIndex(data.dst_ip_mode());
     configForm->leIpDstAddrCount->setText(QString().setNum(data.dst_ip_count()));
     configForm->leIpDstAddrMask->setText(QHostAddress(data.dst_ip_mask()).toString());
-
-    configForm->cmbIpOptMode->setCurrentIndex(data.opt_type());
-    configForm->leIpOptLen->setText(QString().setNum(data.opt_len()));
-    configForm->leIpOptData->setText(uintToHexStr(data.opt_data(), 1));
-    configForm->cmbIpOptMode->setCurrentIndex(data.opt_mode());
 }
 
 void Ip4Protocol::storeConfigWidget()
@@ -925,10 +748,5 @@ void Ip4Protocol::storeConfigWidget()
     data.set_dst_ip_mode((OstProto::Ip4_IpAddrMode)configForm->cmbIpDstAddrMode->currentIndex());
     data.set_dst_ip_count(configForm->leIpDstAddrCount->text().toULong(&isOk));
     data.set_dst_ip_mask(QHostAddress(configForm->leIpDstAddrMask->text()).toIPv4Address());
-
-    data.set_opt_type((OstProto::Ip4_IpOptType)configForm->cmbIpOptType->currentIndex());
-    data.set_opt_len(configForm->leIpOptLen->text().toULong(&isOk));
-    data.set_opt_data(configForm->leIpOptData->text().remove(QChar(' ')).toULong(&isOk, 16));
-    data.set_opt_mode((OstProto::Ip4_IpOptMode)configForm->cmbIpOptMode->currentIndex());
 }
 
