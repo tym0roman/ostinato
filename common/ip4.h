@@ -39,7 +39,6 @@ public:
 private slots:
     void on_cmbIpSrcAddrMode_currentIndexChanged(int index);
     void on_cmbIpDstAddrMode_currentIndexChanged(int index);
-    void on_cmbIpOptType_currentIndexChanged(const QString &arg1);
 };
 
 class Ip4Protocol : public AbstractProtocol
