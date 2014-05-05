@@ -154,7 +154,7 @@ QVariant PayloadProtocol::fieldData(int index, FieldAttrib attrib,
                     QByteArray fv;
                     int dataLen;
 
-                    dataLen = (streamIndex);
+                    dataLen = protocolFrameSize(streamIndex);
 
                     // FIXME: Hack! Bad! Bad! Very Bad!!!
                     if (dataLen <= 0)

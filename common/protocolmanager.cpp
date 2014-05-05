@@ -47,11 +47,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "userscript.h"
 #include "hexdump.h"
 #include "sample.h"
-#include "stp.h"
-#include "qinq.h"
-#include "dcbx.h"
-#include "lacp.h"
-#include "lldp_tlv.h"
 
 ProtocolManager *OstProtocolManager;
 
@@ -82,21 +77,6 @@ ProtocolManager::ProtocolManager()
             (void*) VlanProtocol::createInstance);
     registerProtocol(OstProto::Protocol::kVlanStackFieldNumber,
             (void*) VlanStackProtocol::createInstance);
-    /* Prochkaruk M. - STP */
-    registerProtocol(OstProto::Protocol::kStpFieldNumber,
-            (void*) StpProtocol::createInstance);
-    /* Prochkaruk M. - QinQ */
-    registerProtocol(OstProto::Protocol::kQinqFieldNumber,
-            (void*) QinqProtocol::createInstance);
-    /* Marchuk S. - LLDP TLV */
-    registerProtocol(OstProto::Protocol::kLldp_tlvFieldNumber,
-            (void*) Lldp_tlvProtocol::createInstance);
-    /* Fedorenko A.. - LACP */
-     registerProtocol(OstProto::Protocol::kLacpFieldNumber,
-            (void*) LacpProtocol::createInstance);
-    /* Fedorenko A.. - DCBX */
-     registerProtocol(OstProto::Protocol::kDcbxFieldNumber,
-            (void*) DcbxProtocol::createInstance);
 
     registerProtocol(OstProto::Protocol::kArpFieldNumber,
             (void*) ArpProtocol::createInstance);

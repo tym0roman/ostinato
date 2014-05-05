@@ -75,11 +75,6 @@ private:
         ip4_dstAddrCount,
         ip4_dstAddrMask,
 
-        ip4_optType,
-        ip4_optLen,
-        ip4_optData,
-        ip4_optMode,
-
         ip4_fieldCount
     };
 
