@@ -134,6 +134,57 @@ protected:
     PdmlArpProtocol();
 };
 
+//oleh
+class PdmlLldp_tlvProtocol : public PdmlProtocol
+{
+public:
+    static PdmlProtocol* createInstance();
+
+protected:
+    PdmlLldp_tlvProtocol();
+};
+
+
+class PdmlLacpProtocol : public PdmlProtocol
+{
+public:
+    static PdmlProtocol* createInstance();
+
+protected:
+    PdmlLacpProtocol();
+};
+
+
+class PdmlDcbxProtocol : public PdmlProtocol
+{
+public:
+    static PdmlProtocol* createInstance();
+
+protected:
+    PdmlDcbxProtocol();
+};
+
+
+class PdmlStpProtocol : public PdmlProtocol
+{
+public:
+    static PdmlProtocol* createInstance();
+
+protected:
+    PdmlStpProtocol();
+};
+
+
+class PdmlQinqProtocol : public PdmlProtocol
+{
+public:
+    static PdmlProtocol* createInstance();
+
+protected:
+    PdmlQinqProtocol();
+};
+
+
 class PdmlIp4Protocol : public PdmlProtocol
 {
 public:

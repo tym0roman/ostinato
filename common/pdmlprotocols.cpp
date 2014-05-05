@@ -19,6 +19,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "pdmlprotocols.h"
 
+//oleh
+#include "lldp_tlv.pb.h"
+#include "lacp.pb.h"
+#include "dcbx.pb.h"
+#include "stp.pb.h"
+#include "qinq.pb.h"
+
 #include "arp.pb.h"
 #include "eth2.pb.h"
 #include "dot3.pb.h"
@@ -564,6 +571,122 @@ PdmlProtocol* PdmlArpProtocol::createInstance()
 {
     return new PdmlArpProtocol();
 }
+
+//oleh
+// ---------------------------------------------------------- //
+// PdmlLldp_tlvProtocol                                            //
+// ---------------------------------------------------------- //
+
+PdmlLldp_tlvProtocol::PdmlLldp_tlvProtocol()
+{
+    ostProtoId_ = OstProto::Protocol::kLldp_tlvFieldNumber;
+    //lldp.tlv.type
+    fieldMap_.insert("", OstProto::Lldp_tlv::kIdFieldNumber);
+    fieldMap_.insert("lldp.tlv.len", OstProto::Lldp_tlv::kLenFieldNumber);
+    fieldMap_.insert("lldp.unknown_subtype.content",
+            OstProto::Lldp_tlv::kContentFieldNumber);
+}
+
+PdmlProtocol* PdmlLldp_tlvProtocol::createInstance()
+{
+    return new PdmlLldp_tlvProtocol();
+}
+
+
+// ---------------------------------------------------------- //
+// PdmlLacpProtocol                                            //
+// ---------------------------------------------------------- //
+
+PdmlLacpProtocol::PdmlLacpProtocol()
+{
+    ostProtoId_ = OstProto::Protocol::kLacpFieldNumber;
+
+    fieldMap_.insert("slow.subtype", OstProto::Lacp::kProtoSubtypeFieldNumber);
+    fieldMap_.insert("slow.lacp.version", OstProto::Lacp::kProtoVerNumFieldNumber);
+    fieldMap_.insert("slow.lacp.actorInfo", OstProto::Lacp::kProtoActInfoLenFieldNumber);
+    fieldMap_.insert("slow.lacp.actorInfoLen", OstProto::Lacp::kProtoActInfoLenFieldNumber);
+    fieldMap_.insert("slow.lacp.actorSysPriority", OstProto::Lacp::kProtoActSysPriorFieldNumber);
+    fieldMap_.insert("slow.lacp.actorSystem", OstProto::Lacp::kProtoAsysFieldNumber);
+    fieldMap_.insert("slow.lacp.actorKey", OstProto::Lacp::kProtoAkeyFieldNumber);
+    fieldMap_.insert("slow.lacp.actorPortPriority", OstProto::Lacp::kProtoAportPriorFieldNumber);
+    fieldMap_.insert("slow.lacp.actorPort", OstProto::Lacp::kProtoAportFieldNumber);
+    fieldMap_.insert("slow.lacp.actorState", OstProto::Lacp::kProtoAstateFieldNumber);
+    fieldMap_.insert("slow.lacp.reserved", OstProto::Lacp::kProtoAreservedFieldNumber);
+    fieldMap_.insert("slow.lacp.partherInfo", OstProto::Lacp::kProtoParInfoLenFieldNumber);
+    fieldMap_.insert("slow.lacp.partherInfoLen", OstProto::Lacp::kProtoParInfoLenFieldNumber);
+    fieldMap_.insert("slow.lacp.partnerSysPriority", OstProto::Lacp::kProtoParSysPriorFieldNumber);
+    fieldMap_.insert("slow.lacp.partnerSystem", OstProto::Lacp::kProtoPsysFieldNumber);
+    fieldMap_.insert("slow.lacp.partnerKey", OstProto::Lacp::kProtoPkeyFieldNumber);
+    fieldMap_.insert("slow.lacp.partnerPortPriority", OstProto::Lacp::kProtoPportPriorFieldNumber);
+    fieldMap_.insert("slow.lacp.partnerPort", OstProto::Lacp::kProtoPportFieldNumber);
+    fieldMap_.insert("slow.lacp.partnerState", OstProto::Lacp::kProtoPstateFieldNumber);
+    fieldMap_.insert("slow.lacp.reserved", OstProto::Lacp::kProtoPreservedFieldNumber);
+    fieldMap_.insert("slow.lacp.collectorInfo", OstProto::Lacp::kProtoCollInfoLenFieldNumber);
+    fieldMap_.insert("slow.lacp.collectorInfoLen", OstProto::Lacp::kProtoCollInfoLenFieldNumber);
+    fieldMap_.insert("slow.lacp.collectorMaxDelay", OstProto::Lacp::kProtoCollMaxDelayFieldNumber);
+    fieldMap_.insert("slow.lacp.coll_reserved", OstProto::Lacp::kProtoCreserved0FieldNumber);
+    fieldMap_.insert("slow.lacp.termInfo", OstProto::Lacp::kProtoTLVTypeTermFieldNumber);
+    fieldMap_.insert("slow.lacp.termLen", OstProto::Lacp::kProtoTermLenFieldNumber);
+    fieldMap_.insert("slow.lacp.term_reserved", OstProto::Lacp::kProtoCreserved1FieldNumber);
+    //fieldMap_.insert("slow.lacp.version", OstProto::Lacp::kProtoFCSFieldNumber);
+}
+
+PdmlProtocol* PdmlLacpProtocol::createInstance()
+{
+    return new PdmlLacpProtocol();
+}
+
+
+// ---------------------------------------------------------- //
+// PdmlDcbxProtocol                                            //
+// ---------------------------------------------------------- //
+
+PdmlDcbxProtocol::PdmlDcbxProtocol()
+{
+    ostProtoId_ = OstProto::Protocol::kDcbxFieldNumber;
+
+    fieldMap_.insert("lldp.tlv.type", OstProto::Dcbx::kAppPriorityFieldNumber);
+}
+
+PdmlProtocol* PdmlDcbxProtocol::createInstance()
+{
+    return new PdmlDcbxProtocol();
+}
+
+
+// ---------------------------------------------------------- //
+// PdmlStpProtocol                                            //
+// ---------------------------------------------------------- //
+
+PdmlStpProtocol::PdmlStpProtocol()
+{
+    ostProtoId_ = OstProto::Protocol::kStpFieldNumber;
+
+   //fieldMap_.insert("lldp.tlv.type", OstProto::Dcbx::kAppPriorityFieldNumber);
+}
+
+PdmlProtocol* PdmlStpProtocol::createInstance()
+{
+    return new PdmlStpProtocol();
+}
+
+
+// ---------------------------------------------------------- //
+// PdmlDcbxProtocol                                            //
+// ---------------------------------------------------------- //
+
+PdmlQinqProtocol::PdmlQinqProtocol()
+{
+    ostProtoId_ = OstProto::Protocol::kQinqFieldNumber;
+
+    //fieldMap_.insert("lldp.tlv.type", OstProto::Dcbx::kAppPriorityFieldNumber);
+}
+
+PdmlProtocol* PdmlQinqProtocol::createInstance()
+{
+    return new PdmlQinqProtocol();
+}
+
 
 
 // ---------------------------------------------------------- //

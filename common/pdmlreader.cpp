@@ -42,6 +42,14 @@ PdmlReader::PdmlReader(OstProto::StreamConfigList *streams)
     factory_.insert("frame", PdmlFrameProtocol::createInstance);
 
     factory_.insert("arp", PdmlArpProtocol::createInstance);
+
+    //oleh
+    factory_.insert("lldp", PdmlLldp_tlvProtocol::createInstance);
+    factory_.insert("slow", PdmlLacpProtocol::createInstance);
+    factory_.insert("lldp.tlv", PdmlDcbxProtocol::createInstance);
+    factory_.insert("stp", PdmlStpProtocol::createInstance);
+    factory_.insert("stp", PdmlQinqProtocol::createInstance);
+
     factory_.insert("eth", PdmlEthProtocol::createInstance);
     factory_.insert("http", PdmlTextProtocol::createInstance);
     factory_.insert("icmp", PdmlIcmpProtocol::createInstance);

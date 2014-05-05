@@ -84,7 +84,8 @@ quint32 LacpProtocol::protocolId(ProtocolIdType type) const
 {
     switch(type)
     {
-        case ProtocolIdIp: return 1234;
+        //oleh
+        //case ProtocolIdIp: return 1234;
         case ProtocolIdEth: return 0x8809;
         default:break;
     }
