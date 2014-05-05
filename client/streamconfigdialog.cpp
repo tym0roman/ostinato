@@ -26,6 +26,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "modeltest.h"
 
+#include "mac.h"
+#include "userscript.h"
+
 // FIXME(HI) - remove
 #include "../common/protocolmanager.h"
 extern ProtocolManager *OstProtocolManager;
@@ -384,6 +387,9 @@ void StreamConfigDialog::on_tbSelectProtocols_currentChanged(int index)
             break;
         case 1:
             updateSelectProtocolsAdvancedWidget();
+            break;
+        case 2:
+            // Template page.
             break;
         default:
             qFatal("%s: unexpected index = %d", __FUNCTION__, index);
@@ -806,6 +812,19 @@ void StreamConfigDialog::updateSelectProtocolsSimpleWidget()
 
     qDebug("%s", __FUNCTION__);
 
+    // Remove unsupported USERSCRIPT
+    _iter->toFront();
+     AbstractProtocol *p = NULL;
+     while (_iter->hasNext())
+     {
+         p = _iter->next();
+         if(p->protocolNumber()==OstProto::Protocol::kUserScriptFieldNumber)
+         {
+           _iter->remove();
+           delete p;
+         }
+     }
+
     isUpdateInProgress = true;
 
     // Reset to default state ...
@@ -1149,3 +1168,41 @@ void StreamConfigDialog::on_pbOk_clicked()
     accept();
 }
 
+
+void StreamConfigDialog::on_pbIpv4Mylticast_clicked()
+{
+    // Clean other protocols
+    _iter->toFront();
+    AbstractProtocol *p = NULL;
+    while (_iter->hasNext())
+    {
+        p = _iter->next();
+        _iter->remove();
+        delete p;
+    }
+
+    // MAC header with multicast dest. address.
+    _iter->insert(OstProtocolManager->createProtocol(OstProto::Protocol::kMacFieldNumber,mpStream));
+    MacProtocol *mac_proto = new MacProtocol(mpStream,_iter->value());
+    MacConfigForm *mac_wdgt = (MacConfigForm*)mac_proto->configWidget();
+
+    mac_wdgt->leDstMac->setText("ff ff ff ff ff ff ");
+    mac_wdgt->leSrcMac->setText("01 02 03 04 05 06 ");
+    _iter->setValue(mac_proto);
+
+    _iter->insert(OstProtocolManager->createProtocol(OstProto::Protocol::kEth2FieldNumber,mpStream));
+
+    // Scrip for IPv4 multicast packer header
+    _iter->insert(OstProtocolManager->createProtocol(OstProto::Protocol::kUserScriptFieldNumber,mpStream));
+    UserScriptProtocol *uproto = new UserScriptProtocol(mpStream,_iter->value());
+    UserScriptConfigForm *wdgt = (UserScriptConfigForm*)uproto->configWidget();
+
+    QFile file(":/template_script.txt");
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QTextStream in(&file);
+    QString content = in.readAll();
+
+    wdgt->programEdit->setText(content);
+    tbProtocolData->addItem( wdgt, uproto->name());
+    _iter->setValue(uproto);
+}

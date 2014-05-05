@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'streamconfigdialog.ui'
 **
-** Created: Mon May 5 21:48:22 2014
+** Created: Tue May 6 00:17:50 2014
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -130,6 +130,9 @@ public:
     QToolButton *tbDelete;
     QSpacerItem *spacerItem3;
     QListView *lvSelectedProtocols;
+    QWidget *page_3;
+    QGroupBox *groupBox;
+    QPushButton *pbIpv4Mylticast;
     QWidget *tab_2;
     QHBoxLayout *hboxLayout2;
     QToolBox *tbProtocolData;
@@ -657,6 +660,15 @@ public:
         hboxLayout->addLayout(vboxLayout7);
 
         tbSelectProtocols->addItem(page_2, QString::fromUtf8("Advanced"));
+        page_3 = new QWidget();
+        page_3->setObjectName(QString::fromUtf8("page_3"));
+        groupBox = new QGroupBox(page_3);
+        groupBox->setObjectName(QString::fromUtf8("groupBox"));
+        groupBox->setGeometry(QRect(0, 0, 151, 141));
+        pbIpv4Mylticast = new QPushButton(groupBox);
+        pbIpv4Mylticast->setObjectName(QString::fromUtf8("pbIpv4Mylticast"));
+        pbIpv4Mylticast->setGeometry(QRect(20, 20, 111, 26));
+        tbSelectProtocols->addItem(page_3, QString::fromUtf8("Template"));
 
         gridLayout1->addWidget(tbSelectProtocols, 1, 0, 1, 2);
 
@@ -1114,6 +1126,9 @@ public:
         tbDown->setText(QApplication::translate("StreamConfigDialog", "v", 0, QApplication::UnicodeUTF8));
         tbDelete->setText(QApplication::translate("StreamConfigDialog", "-", 0, QApplication::UnicodeUTF8));
         tbSelectProtocols->setItemText(tbSelectProtocols->indexOf(page_2), QApplication::translate("StreamConfigDialog", "Advanced", 0, QApplication::UnicodeUTF8));
+        groupBox->setTitle(QString());
+        pbIpv4Mylticast->setText(QApplication::translate("StreamConfigDialog", "IPv4 Multicast", 0, QApplication::UnicodeUTF8));
+        tbSelectProtocols->setItemText(tbSelectProtocols->indexOf(page_3), QApplication::translate("StreamConfigDialog", "Template", 0, QApplication::UnicodeUTF8));
         twTopLevel->setTabText(twTopLevel->indexOf(packetConfigTab), QApplication::translate("StreamConfigDialog", "Protocol Selection", 0, QApplication::UnicodeUTF8));
         twTopLevel->setTabText(twTopLevel->indexOf(tab_2), QApplication::translate("StreamConfigDialog", "Protocol Data", 0, QApplication::UnicodeUTF8));
         groupBox_3->setTitle(QApplication::translate("StreamConfigDialog", "Send", 0, QApplication::UnicodeUTF8));

@@ -749,6 +749,37 @@ QLineEdit:enabled[inputMask = "HH HH HH HH HH HH; "] { background-color: #ccccff
            </item>
           </layout>
          </widget>
+         <widget class="QWidget" name="page_3">
+          <attribute name="label">
+           <string>Template</string>
+          </attribute>
+          <widget class="QGroupBox" name="groupBox">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>151</width>
+             <height>141</height>
+            </rect>
+           </property>
+           <property name="title">
+            <string/>
+           </property>
+           <widget class="QPushButton" name="pbIpv4Mylticast">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>20</y>
+              <width>111</width>
+              <height>26</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>IPv4 Multicast</string>
+            </property>
+           </widget>
+          </widget>
+         </widget>
         </widget>
        </item>
       </layout>
