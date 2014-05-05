@@ -1,4 +1,0 @@
-ostinato
-========
-
-ostinato exam task
