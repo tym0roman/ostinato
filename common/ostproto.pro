@@ -23,6 +23,11 @@ FORMS += \
     textproto.ui \
     userscript.ui \
     hexdump.ui \
+    stp.ui \
+    qinq.ui \
+    lacp.ui \
+    lldp_tlv.ui \
+    dcbx.ui \
     sample.ui 
 PROTOS += \
     protocol.proto \
@@ -54,6 +59,11 @@ PROTOS += \
     textproto.proto \
     userscript.proto \
     hexdump.proto \
+    stp.proto \
+    qinq.proto \
+    lacp.proto \
+    lldp_tlv.proto \
+    dcbx.proto \
     sample.proto 
 HEADERS += \
     ostprotolib.h \
@@ -99,6 +109,11 @@ HEADERS += \
     textproto.h \
     userscript.h \
     hexdump.h \
+    stp.h \
+    qinq.h \
+    lacp.h \
+    lldp_tlv.h \
+    dcbx.h \
     sample.h
 SOURCES += \
     ostprotolib.cpp \
@@ -135,6 +150,11 @@ SOURCES += \
     textproto.cpp \
     userscript.cpp \
     hexdump.cpp \
+    stp.cpp \
+    qinq.cpp \
+    lacp.cpp \
+    lldp_tlv.cpp \
+    dcbx.cpp \
     sample.cpp
 
 QMAKE_DISTCLEAN += object_script.*

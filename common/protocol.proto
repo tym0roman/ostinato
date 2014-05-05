@@ -102,7 +102,15 @@ message Protocol {
         kDot2LlcFieldNumber = 206;
         kDot2SnapFieldNumber = 207;
         kVlanStackFieldNumber = 208;
-
+        //----Mykhailo Prochkaruk---
+        kStpFieldNumber = 209;
+        kQinqFieldNumber = 210;
+        //----Sergiy Marchuk--------
+        kLldp_tlvFieldNumber = 211;
+        //----Andriy Fedorenko------
+        kDcbxFieldNumber = 298;
+        kLacpFieldNumber = 299;
+        //--------------------------
         kArpFieldNumber = 300;
         kIp4FieldNumber = 301;
         kIp6FieldNumber = 302;
