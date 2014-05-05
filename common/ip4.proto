@@ -30,6 +30,46 @@ message Ip4 {
         e_im_random_host = 3;
     }
 
+    enum IpOptType {
+	e_ot_eool = 0;
+	e_ot_nop = 1;
+        e_ot_sec = 2;
+        e_ot_lsr = 3;
+        e_ot_ts = 4;
+        e_ot_e_sec = 5;
+        e_ot_cipso = 6;
+        e_ot_rr = 7;
+        e_ot_sid = 8;
+        e_ot_ssr = 9;
+        e_ot_zsu = 10;
+        e_ot_mtup = 11;
+        e_ot_mtur = 12;
+        e_ot_finn = 13;
+        e_ot_visa = 14;
+        e_ot_encode = 15;
+        e_ot_imitd = 16;
+        e_ot_eip = 17;
+        e_ot_tr = 18;
+        e_ot_addext = 19;
+        e_ot_rtralt = 20;
+        e_ot_sdb = 21;
+        e_ot_unassigned = 22;
+        e_ot_dps = 23;
+        e_ot_ump = 24;
+        e_ot_qs = 25;
+        e_ot_exp1 = 26;
+        e_ot_exp2 = 27;
+        e_ot_exp3 = 28;
+        e_ot_exp4 = 29;
+    }
+
+    enum IpOptMode {
+        e_om_fixed = 0;
+        e_om_inc = 1;
+        e_om_dec = 2;
+        e_om_random = 3;
+    }
+
     optional bool is_override_ver    = 1;
     optional bool is_override_hdrlen = 2;
     optional bool is_override_totlen = 3;
@@ -58,7 +98,11 @@ message Ip4 {
     optional uint32        dst_ip_count = 20 [default = 16];
     optional fixed32    dst_ip_mask = 21 [default = 0xFFFFFF00];
 
-    //! \todo (LOW) IPv4 Options
+    // IPv4 Options
+    optional IpOptType opt_type = 22;
+    optional uint32 opt_len = 23 [default = 2];
+    optional uint32 opt_data = 24;
+    optional IpOptMode opt_mode = 25 [default = e_om_fixed];
 }
 
 extend Protocol {

@@ -39,6 +39,7 @@ public:
 private slots:
     void on_cmbIpSrcAddrMode_currentIndexChanged(int index);
     void on_cmbIpDstAddrMode_currentIndexChanged(int index);
+    void on_cmbIpOptType_currentIndexChanged(const QString &arg1);
 };
 
 class Ip4Protocol : public AbstractProtocol
@@ -74,6 +75,11 @@ private:
         ip4_dstAddrMode,
         ip4_dstAddrCount,
         ip4_dstAddrMask,
+
+        ip4_optType,
+        ip4_optLen,
+        ip4_optData,
+        ip4_optMode,
 
         ip4_fieldCount
     };
